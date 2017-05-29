@@ -55,7 +55,6 @@ function logOut( string ){
             }
         }
     };
-
     xhttp.open("GET", string, true);
     xhttp.send();
 }
