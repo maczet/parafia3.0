@@ -39,3 +39,23 @@ function logIn(){
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(json);
 }
+
+function logOut( string ){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+            //var response = JSON.parse(this.response);
+            console.log(this.response);
+            if( this.response == 'success' ){
+                sessionStorage.clear();
+                window.location.assign('../index.html');
+            }else{
+                alert('Ups! Coś poszło nie tak.');
+            }
+        }
+    };
+
+    xhttp.open("GET", string, true);
+    xhttp.send();
+}
