@@ -17,7 +17,7 @@ if( $_SERVER['REQUEST_METHOD'] == "POST" ){
 
     try {
         //nawiązanie połączenia z bazą danych
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username);
+        $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         //pobranie danych użytkownika o podanej nazwie

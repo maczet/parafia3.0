@@ -25,10 +25,7 @@ class userServices
     }
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "password";
-$dbname = "parafia";
+require_once ('dbconfig.php');
 
 if( $_SERVER['REQUEST_METHOD'] == "POST" ){
     //w przypadku 'posta' nic się nie dzieje
@@ -39,18 +36,18 @@ if( $_SERVER['REQUEST_METHOD'] == "POST" ){
         $userServicesArray = array();
 
         //nawiązanie połączenia z bazą danych
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username);
+        $conn = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=utf8", $dbuser);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         //pozyskanie z bazy danych ID zalogowanego użytkownika
-        $stmt2 = $conn->prepare("SELECT id FROM users WHERE username='$loggedUser'");
-        $stmt2->execute();
+        $stmt2 = $conn->prepare("SELECT id FROM users WHERE username=?");
+        $stmt2->execute(array($loggedUser));
         $result = $stmt2->fetchAll();
         $userId = $result[0]['id'];
 
         //pobranie danych o zaksięgowanych usługach użytkownika
-        $stmt = $conn->prepare("SELECT service_id, user_comment, service_date FROM user_services WHERE user_id='$userId'");
-        $stmt->execute();
+        $stmt = $conn->prepare("SELECT service_id, user_comment, service_date FROM user_services WHERE user_id=?");
+        $stmt->execute(array($userId));
 
         //przygotowanie komendy pobierającej dodatkowe informacje o każdej usłudze
         $stmt2 = $conn->prepare("SELECT service_name, service_description, price FROM services WHERE id=:id");
