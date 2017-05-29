@@ -1,3 +1,5 @@
+/*test*/
+
 CREATE DATABASE parafia;
 USE parafia;
 
