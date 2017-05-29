@@ -7,10 +7,7 @@
  */
 session_start();
 
-$servername = "localhost";
-$username = "root";
-$password = "password";
-$dbname = "parafia";
+require_once('dbconfig.php');
 
 //przesłanie danych metodą POST rozpoczyna próbę logowania użytkownika
 if( $_SERVER['REQUEST_METHOD'] == "POST" ){
@@ -62,12 +59,12 @@ if( $_SERVER['REQUEST_METHOD'] == "POST" ){
     try {
         $loggedUser = $_SESSION['loggedUser'];
 
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username);
+        $conn = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=utf8", $dbuser);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $stmt = $conn->prepare("SELECT firstname, lastname FROM users WHERE
-          username='$loggedUser'");
-        $stmt->execute();
+          username=?"); // SQL Injection
+        $stmt->execute(array($loggedUser));
 
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         foreach($stmt->fetchAll() as $k=>$row) {
