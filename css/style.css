@@ -191,7 +191,6 @@ table {
     width: 60%;
 }
 
-
 /*help*/
 #helpForm{
 
@@ -249,15 +248,23 @@ table {
     color: whitesmoke;
 }
 
-/*#messageForm input{*/
-    /*height: 200px;*/
-    /*width: 400px;*/
-    /*font-size: x-large;*/
-    /*!*margin-top: 10px;*!*/
-    /*!*margin-bottom: 5px;*!*/
-    /*!*margin-left: 10px;*!*/
-/*}*/
+#error{
+    display: block;
+    text-align: left;
+    color: red;
+    margin-left: 30px;
+    top: 30px;
+    font-size: x-large;
+}
 
+#success{
+    display: block;
+    text-align: left;
+    color: green;
+    margin-left: 30px;
+    top: 30px;
+    font-size: x-large;
+}
 
 #helpForm textarea {
     width: 600px;
@@ -270,6 +277,15 @@ table {
     font-size: x-large;
     resize: none;
 }
+
+/*#messageForm input{*/
+/*height: 200px;*/
+/*width: 400px;*/
+/*font-size: x-large;*/
+/*!*margin-top: 10px;*!*/
+/*!*margin-bottom: 5px;*!*/
+/*!*margin-left: 10px;*!*/
+/*}*/
 
 /*.headerButtonsDiv{*/
 /*float: right;*/
@@ -443,13 +459,3 @@ table {
     /*background: #ff6b63;*/
 /*}*/
 
-/*#infoLabel{*/
-    /*display: block;*/
-    /*text-align: center;*/
-
-    /*position: relative;*/
-    /*top: 30px;*/
-
-    /*font-style: italic;*/
-    /*font-size: large;*/
-/*}*/
