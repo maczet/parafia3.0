@@ -6,6 +6,8 @@
  * Time: 20:46
  */
 
+
+
 /**
  * Class AdditionalConnectionOptions
  * Use magic methods to implement any  additional
@@ -44,6 +46,7 @@ class ConnectionOptions {
     private $port;
     private $password;
     private $additionals;
+    private $connection;
 
     function __construct($hostname, $databasename, $username, $password, $port = "", $additionals = "")
     {
@@ -132,6 +135,8 @@ class ConnectionOptions {
     {
         $this->password = $password;
     }
+
+
 }
 
 
@@ -145,24 +150,41 @@ class ConnectionOptions {
 class customDBEngine
 {
     private $connectionOptions;
+    protected static $singleton = null;
 
-
-    public function __construct()
-    {
-
+    public function getDatabase() {
+       if (!isset(static::$singleton)) {
+            static::$singleton = new static;
+        }
+      return static::$singleton;
     }
 
-    public function Connect()
+    // this is singleton
+    protected function __construct($hostname, $databasename, $username, $password, $port = "", $additionals = "")
     {
+        $this->connectionOptions = new ConnectionOptions($hostname, $databasename, $username, $password, $port, $additionals);
+    }
 
+    protected function __clone()
+    {
+        // this is singleton
     }
 
     /**
      * @return customQuery
      */
-    public function Query()
+    public function query()
     {
         return new customQuery(this);
+    }
+
+    public function connect() {
+        $this->connection = new PDO("mysql:host=$this->connectionOptions->hostname;dbname=$this->connectionOptions->databasename", $this->connectionOptions->username);
+        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+
+    public function prepare($sql) {
+        return $this->prepare($sql);
     }
 
 
@@ -185,20 +207,36 @@ interface queryInterface
 class customQuery implements queryInterface
 {
     private $connection;
+    private $sql; // sql text
+    private $stmt;
 
-    public function __construct()
+    public function __construct($connection)
     {
-
+        $this->connection = $connection;
     }
 
-    public function open($sql)
+    public function open($sql, $values = "")
     {
-
+        $this->stmt = $this->connection->prepare($sql);
+        $this->stmt->execute(array($values));
+        return $this;
     }
 
-    public function first()
-    {
-
+    public function rowCount() {
+        return $this->stmt->rowCount();
     }
+
+    public function getResult() {
+        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getSQL() {
+        return $this->sql;
+    }
+
+    public function setSQL($sql) {
+        $this->sql = $sql;
+    }
+
 }
 
