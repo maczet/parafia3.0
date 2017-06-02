@@ -85,6 +85,12 @@ footer h5{
     z-index: 1;
 }
 
+.logoutButton{
+    position: absolute;
+    right: 10px;
+    top: 20%;
+}
+
 /*login*/
 #loginForm{
 
@@ -222,7 +228,6 @@ table {
     font-size: x-large;
     margin-top: 10px;
     margin-bottom: 5px;
-    /*margin-left: 10px;*/
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 }
