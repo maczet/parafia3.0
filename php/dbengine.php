@@ -6,8 +6,7 @@
  * Time: 20:46
  */
 
-
-
+include_once('../php/dbconfig.php');
 /**
  * Class AdditionalConnectionOptions
  * Use magic methods to implement any  additional
@@ -23,6 +22,7 @@
  * </code>
  *
  */
+
 class AdditionalConnectionOptions
 {
 
@@ -46,14 +46,16 @@ class ConnectionOptions {
     private $port;
     private $password;
     private $additionals;
-    private $connection;
+    //private $connection;
 
     function __construct($hostname, $databasename, $username, $password, $port = "", $additionals = "")
     {
-        this.$hostname = $hostname;
-        this.$databasename = $databasename;
-        this.$username = $username;
-        this.$password = $password;
+        $this->hostname = $hostname;
+        $this->databasename = $databasename;
+        $this->username = $username;
+        $this->password = $password;
+        $this->port = $port;
+        $this->additionals = $additionals;
     }
 
     /**
@@ -140,7 +142,6 @@ class ConnectionOptions {
 }
 
 
-
 /**
  * Class customDBEngine
  * Implements basic methods and properties
@@ -149,12 +150,15 @@ class ConnectionOptions {
 
 class customDBEngine
 {
+    private $connection;
     private $connectionOptions;
+    private $loggedUser;
     protected static $singleton = null;
 
-    public function getDatabase() {
+    public static function getDatabase() {
        if (!isset(static::$singleton)) {
-            static::$singleton = new static;
+           static::$singleton = new static(DB_HOST, DB_NAME, DB_USER, DB_PASS);
+           static::$singleton->connect();
         }
       return static::$singleton;
     }
@@ -175,19 +179,30 @@ class customDBEngine
      */
     public function query()
     {
-        return new customQuery(this);
+        return new customQuery($this);
     }
 
-    public function connect() {
-        $this->connection = new PDO("mysql:host=$this->connectionOptions->hostname;dbname=$this->connectionOptions->databasename", $this->connectionOptions->username);
+    public function connect()
+    {
+        $this->connection = new PDO("mysql:host=$this->connectionOptions->getHostname();dbname=$this->connectionOptions->getDatabasename()", $this->connectionOptions->getUsername());
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public function prepare($sql) {
+    public function prepare($sql)
+    {
         return $this->prepare($sql);
     }
 
+    public function login($user, $password)
+    {
+       if ($this->query()->open()->rowCount() > 0)
+          $this->loggedUser = $user;
+    }
 
+    public function isLogged()
+    {
+
+    }
 }
 
 /**
@@ -234,7 +249,8 @@ class customQuery implements queryInterface
         return $this->sql;
     }
 
-    public function setSQL($sql) {
+    public function setSQL($sql)
+    {
         $this->sql = $sql;
     }
 

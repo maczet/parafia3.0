@@ -6,7 +6,9 @@
  * Time: 21:24
  */
 
-$dbhost = "localhost";
-$dbuser = "root";
-$dbpassword = "password";
-$dbname = "parafia";
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', 'password');
+define('DB_NAME', 'parafia');
+
+
