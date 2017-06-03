@@ -195,13 +195,23 @@ class customDBEngine
 
     public function login($user, $password)
     {
-       if ($this->query()->open()->rowCount() > 0)
-          $this->loggedUser = $user;
+       if ($this->query()->open("SELECT firstname, lastname FROM users WHERE
+          username= ? and password = ?", array($user, hash('sha256', $password)))->rowCount() > 0)
+       {
+           $this->loggedUser = $user;
+           return true;
+       }
+       return false;
     }
 
     public function isLogged()
     {
+        return $this->loggedUser <> '';
+    }
 
+    public function getLoggedUser()
+    {
+        return $this->loggedUser;
     }
 }
 
