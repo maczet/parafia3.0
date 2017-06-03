@@ -12,16 +12,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Parafia WEB</title>
+    <meta name="description" content="Najlepszy portal do zarządzania parfią wraz ze zintegrowanymi modułami.
+    Jeśli znajdziesz lepszy postal my zwrócimy Ci pieniądze"/>
     <link rel="stylesheet" href="css/style.css">
+    <meta name="keywords" content="parafia, program, najlepszy portal" />
 </head>
 
 <?php
-  include_once('/view/menu.php');
+  include_once('view/menu.php');
 ?>
 
 <?php
   if (isset($_GET['view']))
-    include_once('/view/' . $_GET['view'] . '.php');
+    include_once('view/' . $_GET['view'] . '.php');
 ?>
 
 <footer>
