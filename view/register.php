@@ -15,7 +15,7 @@
             <table>
                 <tr>
                     <th><label for="firstName">Imię:*</label></th>
-                    <th><input id="firstName" type="text" required></th>
+                    <th><input id="firstName" type="text" required title="Wpisz Twoje imię"></th>
 
                     <td><label for="username">Nazwa użytkownika:*</label></td>
                     <td><input id="username" type="text" required></td>

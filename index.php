@@ -18,18 +18,28 @@
     <meta name="keywords" content="parafia, program, najlepszy portal" />
 </head>
 
-<?php
-  include_once('view/menu.php');
-?>
+<body>
+<div id="container"></div>
+    <div id="logo">
+        <h1>Parafia WEB 3.0</h1>
+    </div>
 
-<?php
-  if (isset($_GET['view']))
-    include_once('view/' . $_GET['view'] . '.php');
-?>
 
-<footer>
-    <h5>Najlepszy portal do zarządzania Twoją PARAFIĄ copyright by Maciej and Maciej</h5>
-</footer>
+        <div id="menu">
+        <?php
+          include_once('view/menu.php');
+        ?>
+        </div>
 
+        <div id="content">
+        <?php
+          if (isset($_GET['view']))
+            include_once('view/' . $_GET['view'] . '.php');
+        ?>
+        </div>
+
+    <footer>
+        <h5>Najlepszy portal do zarządzania Twoją PARAFIĄ copyright by Maciej and Maciej &copy;</h5>
+    </footer>
 </body>
 </html>

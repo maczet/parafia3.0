@@ -7,7 +7,7 @@
  */
 ?>
   <div class="menuContainer">
-            <a href="index.php?view=login">Logowanie</a>
-            <a href="index.php?view=register">Rejestracja</a>
-            <a href="index.php?view=help">Pomoc</a>
+            <a href="index.php?view=login" title="Strona logowania">Logowanie</a>
+            <a href="index.php?view=register" title="Strona rejestracji nowego użytkownika">Rejestracja</a>
+            <a href="index.php?view=help" title="Strona pomocy">Pomoc</a>
   </div>
