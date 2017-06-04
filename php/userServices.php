@@ -36,7 +36,7 @@ if( $_SERVER['REQUEST_METHOD'] == "POST" ){
         $userServicesArray = array();
 
         //nawiązanie połączenia z bazą danych
-        $conn = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=utf8", $dbuser);
+        $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8", DB_PASS);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         //pozyskanie z bazy danych ID zalogowanego użytkownika

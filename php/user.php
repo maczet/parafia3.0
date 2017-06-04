@@ -10,14 +10,16 @@ session_start();
 require_once('dbconfig.php');
 
 //przesłanie danych metodą POST rozpoczyna próbę logowania użytkownika
-if( $_SERVER['REQUEST_METHOD'] == "POST" ){
+if( $_SERVER['REQUEST_METHOD'] == "POST" ) {
     //pobranie danych z 'posta' i rozkodowanie do notacji PHP
     $content = file_get_contents("php://input");
     $decoded = json_decode($content);
 
+
+
     try {
         //nawiązanie połączenia z bazą danych
-        $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser);
+        $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8", DB_USER, DB_PASS);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         //pobranie danych użytkownika o podanej nazwie
@@ -49,7 +51,7 @@ if( $_SERVER['REQUEST_METHOD'] == "POST" ){
         exit();
     }
     catch(PDOException $e) {
-        echo json_encode( 'error' );
+        echo json_encode( 'error: '.$e->getMessage());
         $conn = null;
         exit();
     }
@@ -59,7 +61,7 @@ if( $_SERVER['REQUEST_METHOD'] == "POST" ){
     try {
         $loggedUser = $_SESSION['loggedUser'];
 
-        $conn = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=utf8", $dbuser);
+        $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8", DB_USER, DB_PASS);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $stmt = $conn->prepare("SELECT firstname, lastname FROM users WHERE
