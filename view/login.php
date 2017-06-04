@@ -11,10 +11,10 @@
 <div class="mainContainer">
             <div id="loginForm">
                 <label for="username">Login:</label>
-                <input id="username" type="text">
+                <input id="username" type="text" title="Wpisz swój login">
                 <br>
                 <label for="password">Hasło:</label>
-                <input id="password" type="password">
+                <input id="password" type="password" title="Wpisz swoje hasło">
                 <br>
                 <button onclick="logIn()">Log In</button>
                 <br>

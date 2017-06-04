@@ -21,6 +21,7 @@ header{
     padding: 20px;
 }
 
+/*Logowanie*/
 #loginForm{
     float: left;
     position: relative;
@@ -139,7 +140,7 @@ footer h5{
     right: 10px;
     top: 20%;
 }
-
+/*Rejestracja*/
 #registerForm{
     float: left;
     position: relative;
@@ -276,4 +277,16 @@ table{
     background-color: #f8f8f8;
     font-size: x-large;
     resize: none;
+}
+
+/*Linki*/
+a:link{
+    color: whitesmoke;
+}
+
+a:visited{
+    color: whitesmoke;
+}
+a:hover{
+    color: blue;
 }

@@ -20,7 +20,7 @@
 
     <script src="js/script.js"></script>
     <script src="lib/jquery-3.2.0.min.js"></script>
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
 <body>
