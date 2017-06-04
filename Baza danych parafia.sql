@@ -22,11 +22,6 @@ FOREIGN KEY (id_osoby)
 	REFERENCES osoba(id_osoby)
 );
 
-CREATE TABLE miasto (
-id_miasta INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-miasto VARCHAR(40) NOT NULL,
-wojewodztwo VARCHAR(30) NOT NULL
-);
 
 CREATE TABLE adres(
 id_adres INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -34,10 +29,7 @@ ulica VARCHAR(40) NOT NULL,
 numer_budynku INT UNSIGNED NOT NULL,
 numer_mieszkania int UNSIGNED,
 kod_pocztowy VARCHAR(6) NOT NULL,
-id_miasta Int UNSIGNED NOT NULL,
-	
-    FOREIGN KEY (id_miasta)
-		REFERENCES miasto(id_miasta)
+miasto VARCHAR(40) NOT NULL
 );
 
 CREATE TABLE osoba_adres (
@@ -101,19 +93,12 @@ INSERT INTO cmentarz (x, y, Od_wynajete, do_wynajtete, id_osoby) VALUES (3, 5, '
 INSERT INTO cmentarz (x, y, Od_wynajete, do_wynajtete, id_osoby) VALUES (32, 31, '1996-12-12', '2100-12-11', 3);
 INSERT INTO cmentarz (x, y, Od_wynajete, do_wynajtete, id_osoby) VALUES (14, 17, '2016-01-01', '2025-10-10', 4);
 
-INSERT INTO miasto (id_miasta, miasto, wojewodztwo) VALUES (NULL, 'Katowice', 'Śląskie');
-INSERT INTO miasto (id_miasta, miasto, wojewodztwo) VALUES (NULL, 'Mysłowice', 'Śląskie');
-INSERT INTO miasto (id_miasta, miasto, wojewodztwo) VALUES (NULL, 'Ruda Śląska', 'Śląskie');
-INSERT INTO miasto (id_miasta, miasto, wojewodztwo) VALUES (NULL, 'Tychy', 'Śląskie');
-INSERT INTO miasto (id_miasta, miasto, wojewodztwo) VALUES (NULL, 'Gliwice', 'Śląskie');
-INSERT INTO miasto (id_miasta, miasto, wojewodztwo) VALUES (NULL, 'Zabrze', 'Śląskie');
-
-INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, id_miasta) VALUES (NULL, 'Kijowska', 10, 16, '40-123', 1);
-INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, id_miasta) VALUES (NULL, 'Miejska', 123, NULL, '41-223', 2);
-INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, id_miasta) VALUES (NULL, 'Staromiejska', 1, 345, '42-654', 3);
-INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, id_miasta) VALUES (NULL, 'Śląska', 2, NULL, '40-033', 4);
-INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, id_miasta) VALUES (NULL, '3 Maja', 10, 2, '48-123', 5);
-INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, id_miasta) VALUES (NULL, '1 Maja', 987, 89, '40-121', 6);
+INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, 'Kijowska', 10, 16, '40-123',  'Katowice');
+INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, 'Miejska', 123, NULL, '41-223', 'Katowice');
+INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, 'Staromiejska', 1, 345, '42-654', 'Katowice');
+INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, 'Śląska', 2, NULL, '40-033', 'Katowice');
+INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, '3 Maja', 10, 2, '48-123', 'Katowice');
+INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, '1 Maja', 987, 89, '40-121',  'Katowice');
 
 INSERT INTO osoba_adres(id_osoby, id_adres) VALUES (1,2);
 INSERT INTO osoba_adres(id_osoby, id_adres) VALUES (2,4);
@@ -156,13 +141,12 @@ SELECT o.nazwisko, o.imie
 FROM osoba AS o
 ORDER BY nazwisko;
 
-CREATE VIEW adres_caly AS
+CREATE VIEW adres_all AS
 SELECT o.nazwisko, o.imie, a.ulica, a.numer_budynku, a.numer_mieszkania, 
-a.kod_pocztowy, m.miasto, m.wojewodztwo 
+a.kod_pocztowy, a.miasto 
 FROM osoba AS o
 NATURAL JOIN osoba_adres
 NATURAL JOIN adres AS a
-NATURAL JOIN miasto AS m
 ORDER BY nazwisko;
 
 CREATE VIEW datki AS
