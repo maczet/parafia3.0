@@ -34,7 +34,7 @@ function logIn(){
             }
         }
     };
-    xhttp.open("POST", "../php/user.php", true);
+    xhttp.open("POST", "php/user.php", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(json);
 }
@@ -118,7 +118,6 @@ function createUser( object) {
             }else if( response == 'success' ){
                 label = document.getElementById('success');
 
-
                 alert("Rejestracja powiodła się. Nastąpi automatyczne logowanie po naciśnięciu OK.");
                 logIn( );
 
@@ -126,7 +125,7 @@ function createUser( object) {
             }
         }
     };
-    xhttp.open("POST", "../php/create_user.php", true);
+    xhttp.open("POST", "php/create_user.php", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(json);
 }

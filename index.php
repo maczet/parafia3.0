@@ -12,16 +12,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Parafia WEB</title>
+
     <meta name="description" content="Najlepszy portal do zarządzania parfią wraz ze zintegrowanymi modułami.
     Jeśli znajdziesz lepszy postal my zwrócimy Ci pieniądze"/>
-    <link rel="stylesheet" href="css/style.css">
+
     <meta name="keywords" content="parafia, program, najlepszy portal" />
+
+    <script src="js/script.js"></script>
+    <script src="lib/jquery-3.2.0.min.js"></script>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
 <body>
+<header>
+    <h1>Parafia WEB 3.0</h1>
+</header>
 <div id="container">
     <div id="logo">
-        <h1>Parafia WEB 3.0</h1>
+
     </div>
 
         <div id="menu">
