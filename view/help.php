@@ -12,11 +12,11 @@
     <div id="helpForm">
         <form onsubmit="validForm()">
 
-            <label for="email">Twój adres email</label>
+            <label for="email">Twój adres email*</label>
             <br>
             <input id="email" type="email" placeholder="email" required>
             <br>
-            <label for="message">Twoja wiadomość</label>
+            <label for="message">Twoja wiadomość*</label>
             <br>
             <textarea id="message" type="text" required></textarea>
             <br>
