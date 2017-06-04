@@ -6,7 +6,7 @@
  * Time: 20:46
  */
 
-include_once('../php/dbconfig.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/php/dbconfig.php');
 /**
  * Class AdditionalConnectionOptions
  * Use magic methods to implement any  additional
