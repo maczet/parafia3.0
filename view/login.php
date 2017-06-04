@@ -20,3 +20,7 @@
                 <label id="error"></label>
                 <br>
         </div>
+    <div id="img">
+        <img src="img/church.jpg" width="400px">
+    </div>
+</div>

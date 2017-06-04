@@ -25,3 +25,7 @@
             <h3>*pola wymagane</h3>
         </form>
     </div>
+    <div id="img">
+        <img src="img/question-mark.png" width="400px" height="400px">
+    </div>
+</div>

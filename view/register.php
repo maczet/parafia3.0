@@ -12,10 +12,10 @@
     <div id="registerForm">
         <form onsubmit="validForm()">
 
-            <table>
+            <table width="800">
                 <tr>
-                    <th><label for="firstName">Imię:*</label></th>
-                    <th><input id="firstName" type="text" required title="Wpisz Twoje imię"></th>
+                    <td><label for="firstName">Imię:*</label></td>
+                    <td><input id="firstName" type="text" required title="Wpisz Twoje imię"></td>
 
                     <td><label for="username">Nazwa użytkownika:*</label></td>
                     <td><input id="username" type="text" required></td>
@@ -23,8 +23,8 @@
                 <tr>
                     <td><label for="lastName">Nazwisko:*</label></td>
                     <td><input id="lastName" type="text" required></td>
-                    <th><label for="email">e-mail:*</label></th>
-                    <th><input id="email" type="email" required> </th>
+                    <td><label for="email">e-mail:*</label></td>
+                    <td><input id="email" type="email" required> </td>
                 </tr>
                 <tr>
                     <td><label for="password">Hasło:*</label></td>
@@ -47,6 +47,8 @@
 
         </form>
     </div>
-
+    <div id="img">
+        <img src="img/businessman.png" width="400px" height="400px">
+    </div>
     <label id="error"></label><label id="success"></label>
 </div>
