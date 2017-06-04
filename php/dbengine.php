@@ -184,7 +184,7 @@ class customDBEngine
 
     public function connect()
     {
-        $this->connection = new PDO("mysql:host=$this->connectionOptions->getHostname();dbname=$this->connectionOptions->getDatabasename()", $this->connectionOptions->getUsername());
+        $this->connection = new PDO("mysql:host=$this->connectionOptions->getHostname();dbname=$this->connectionOptions->getDatabasename()", $this->connectionOptions->getUsername(), $this->connectionOptions->getPassword());
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
