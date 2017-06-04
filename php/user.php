@@ -19,7 +19,7 @@ if( $_SERVER['REQUEST_METHOD'] == "POST" ) {
 
     try {
         //nawiązanie połączenia z bazą danych
-        $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8", DB_PASS);
+        $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8", DB_USER);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         //pobranie danych użytkownika o podanej nazwie
@@ -51,7 +51,7 @@ if( $_SERVER['REQUEST_METHOD'] == "POST" ) {
         exit();
     }
     catch(PDOException $e) {
-        echo json_encode( 'error' );
+        echo json_encode( 'error: '.$e->getMessage());
         $conn = null;
         exit();
     }
@@ -61,7 +61,7 @@ if( $_SERVER['REQUEST_METHOD'] == "POST" ) {
     try {
         $loggedUser = $_SESSION['loggedUser'];
 
-        $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8", DB_PASS);
+        $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8", DB_USER);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $stmt = $conn->prepare("SELECT firstname, lastname FROM users WHERE
