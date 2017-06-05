@@ -7,43 +7,48 @@
  */
 ?>
 
+
 <h2>Dodaj nowego parafianina do bazy.</h2>
 
-<form method="post">
+<form onsubmit="valid_form_add_person()">
     <div id="add">
         <div class="square">
             Imię*
             <br/>
-            <input type="text" name="name" />
+            <input type="text" id="name" />
             <br/><br/>
             Nazwisko*
             <br/>
-            <input type="text" name="surname" />
+            <input type="text" id="surname" />
             <br/><br/>
             Data urodzienia
             <br/>
-            <input type="date" name="birthday" />
+            <input type="date" id="birthday" />
             <br/><br/>
             Płeć*
             <br/>
-            <input type="text" name="sex" title="Podaj K lub M" />
+            <input type="text" id="sex" title="Podaj K lub M" />
             <br/><br/>
         </div>
 
         <div class="square">
             Zdjęcie
             <br/>
-            <input type="file" name="photo" />
+            <input type="file" id="photo" />
             <br/><br/>
             Opis
             <br/>
-            <input type="text" name="description" />
+            <input type="text" id="description" />
             <br/><br/>
         </div>
         <div style="clear: both">
-            <input type="submit" value="Dodaj nową osobę">
+            <button type="submit" class="apply">Dodaj</button>
+            <button onclick="clear_add_person()" class="cancel">Wyczyść</button>
             <br/><br/>
             *Wymagane
         </div>
     </div>
 </form>
+<div>
+    <label id="label_info"></label><label id="success"></label>
+</div>

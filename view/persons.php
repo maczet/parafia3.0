@@ -29,6 +29,8 @@ include_once('../php/dbengine.php');
     <div id="img">
         <img src="img/businessman.png" width="400px" height="400px">
     </div>
-    <label id="error"></label><label id="success"></label>
+    <div>
+        <label id="label_info"></label><label id="success"></label>
+    </div>
 </div>
 

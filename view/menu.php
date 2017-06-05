@@ -14,6 +14,7 @@ if (false) {
         <a href="index.php?view=login" title="Lista parafian">Lista parafian</a>
         <a href="index.php?view=register" title="Lista adresów">Lista adresów</a>
         <a href="index.php?view=help" title="Lista miast">Lista miast</a>
+        <button class="logoutButton" onclick="logOut('php/logout.php')">Log out</button>
     </div>
     <?php
 } else {

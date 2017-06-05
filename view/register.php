@@ -11,7 +11,6 @@
 <div class="mainContainer">
     <div id="registerForm">
         <form onsubmit="validForm()">
-
             <table width="800">
                 <tr>
                     <td><label for="firstName">Imię:*</label></td>
@@ -50,5 +49,7 @@
     <div id="img">
         <img src="img/businessman.png" width="400px" height="400px">
     </div>
-    <label id="error"></label><label id="success"></label>
+    <div>
+        <label id="label_info"></label><label id="success"></label>
+    </div>
 </div>

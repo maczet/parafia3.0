@@ -49,7 +49,7 @@ function logOut( string ){
             console.log(this.response);
             if( this.response == 'success' ){
                 sessionStorage.clear();
-                window.location.assign('../index.html');
+                window.location.assign('../index.php');
             }else{
                 alert('Ups! Coś poszło nie tak.');
             }
@@ -89,13 +89,13 @@ function validForm(){
             createUser(obj);
 
         } else {
-            var label = document.getElementById('password_warning');
+            var label = document.getElementById('label_info');
             label.innerHTML = "Hasło musi być identyczne!";
         }
     }
     else
     {
-        var label = document.getElementById('password_warning');
+        var label = document.getElementById('label_info');
         label.innerHTML = "Hasło nie może być krótsze niż 3 znaki!";
     }
 }
@@ -112,7 +112,7 @@ function createUser( object) {
             console.log(this.response);
             var response = JSON.parse(this.responseText);
             if( response == 'userExist' ){
-                label = document.getElementById('error');
+                label = document.getElementById('label_info');
                 label.style.color = "red";
                 label.innerHTML = "Ta nazwa użytkownika jest już zajęta!";
             }else if( response == 'success' ){
