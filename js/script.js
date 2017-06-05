@@ -28,7 +28,7 @@ function logIn(){
             }else{
                 console.log(response);
                 sessionStorage.setItem('loggedUser', response );
-                window.location.assign('main.php');
+                window.location.assign('index.php');
             }
         }
     };

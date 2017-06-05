@@ -6,6 +6,12 @@
  * Time: 20:46
  */
 
+if (version_compare(PHP_VERSION, '5.4.0', '<')) {
+    if(session_id() == '') {session_start();}
+} else  {
+    if (session_status() == PHP_SESSION_NONE) {session_start();}
+}
+
 include_once($_SERVER['DOCUMENT_ROOT'].'/php/dbconfig.php');
 /**
  * Class AdditionalConnectionOptions
@@ -199,6 +205,7 @@ class customDBEngine
           username= ? and password = ?", array($user, hash('sha256', $password)))->rowCount() > 0)
        {
            $this->loggedUser = $user;
+           $_SESSION['loggedUser'] = $user;
            return true;
        }
        return false;
@@ -206,12 +213,12 @@ class customDBEngine
 
     public function isLogged()
     {
-        return $this->loggedUser <> '';
+        return $_SESSION['loggedUser'] <> '';
     }
 
     public function getLoggedUser()
     {
-        return $this->loggedUser;
+        return $_SESSION['loggedUser'];
     }
 }
 
