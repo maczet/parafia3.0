@@ -13,7 +13,7 @@ function clear_reg_form(){
     document.getElementById('photo').value = "";
     document.getElementById('description').value = "";
 }
-
+// dodawanie osoby
 function add_person( object ) {
 
     var json = JSON.stringify(object);
@@ -59,4 +59,62 @@ function valid_form_add_person(){
         var label = document.getElementById('label_info');
         label.innerHTML = "Proszę wypełnić wszystkie wymagane pola!";
     }
+}
+
+//dodawanie adresu
+function clear_address_form(){
+    document.getElementById('id_person').value = "";
+    document.getElementById('street').value = "";
+    document.getElementById('house_number').value = "";
+    document.getElementById('flat_number').value = "";
+    document.getElementById('code').value = "";
+    document.getElementById('city').value = "";
+}
+
+function valid_form_add_address(){
+    event.preventDefault(event);
+
+    var id_person, street, house_number, flat_number, code, city;
+    id_person = document.getElementById('id_person').value;
+    street = document.getElementById('street').value;
+    house_number = document.getElementById('house_number').value;
+    flat_number = document.getElementById('flat_number').value;
+    code = document.getElementById('code').value;
+    city = document.getElementById('city').value;
+
+    if ( id_person != "" && street != "" && house_number != "" && code != "" && city!= "") {
+
+        var obj;
+
+        var obj = {
+            id_osoby: id_person,
+            ulica: street,
+            numer_budynku: house_number,
+            numer_mieszkania: flat_number,
+            kod_pocztowy: code,
+            miasto: city
+        };
+        add_address(obj);
+
+    }else
+    {
+        var label = document.getElementById('label_info');
+        label.innerHTML = "Proszę wypełnić wszystkie wymagane pola!";
+    }
+}
+
+function add_address( object ) {
+
+    var json = JSON.stringify(object);
+    var label;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log( JSON.parse( this.responseText ) );
+            document.getElementById('label_info').innerHTML = "Osoba została dodana.";
+        }
+    };
+    xhttp.open("POST", "../php/dbengine.php", true);
+    xhttp.send( json );
 }
