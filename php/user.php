@@ -8,6 +8,7 @@
 session_start();
 
 require_once('dbconfig.php');
+require_once ('dbengine.php');
 
 //przesłanie danych metodą POST rozpoczyna próbę logowania użytkownika
 if( $_SERVER['REQUEST_METHOD'] == "POST" ) {
@@ -15,42 +16,16 @@ if( $_SERVER['REQUEST_METHOD'] == "POST" ) {
     $content = file_get_contents("php://input");
     $decoded = json_decode($content);
 
-
-
-    try {
-        //nawiązanie połączenia z bazą danych
-        $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8", DB_USER, DB_PASS);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        //pobranie danych użytkownika o podanej nazwie
-        $stmt = $conn->prepare("SELECT username, password FROM users WHERE
-      username='$decoded->username'");
-        $stmt->execute();
-
-        //sprawdzenie, czy dane się zgadzają, jeśli tak to następuje logowanie
-        //jeśli nie, to zwracana jest informacja, że użytkownik nie istniej
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        foreach($stmt->fetchAll() as $k=>$row) {
-
-            $pass = hash('sha256', $decoded->password);
-            if( $decoded->username == $row['username'] ){
-                if( $pass == $row['password'] ){
-                    $_SESSION['loggedUser'] = $decoded->username;
-                    echo json_encode( $_SESSION['loggedUser'] );
-                    $conn = null;
-                    exit();
-                }else{
-                    echo json_encode( 'incorrectPassword');
-                    $conn = null;
-                    exit();
-                }
-            }
-        }
-        echo json_encode('noUser');
-        $conn = null;
-        exit();
+    try
+    {
+        if (DBEngine::getDatabase()->login($decoded->username,$decoded->password))
+            echo json_encode(DBEngine::getDatabase()->getLoggedUser());
+        else
+            // nie podajemy co było źle :)
+            echo json_encode( 'incorrectData');
     }
-    catch(PDOException $e) {
+    catch(PDOException $e)
+    {
         echo json_encode( 'error: '.$e->getMessage());
         $conn = null;
         exit();

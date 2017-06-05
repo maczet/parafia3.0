@@ -23,14 +23,12 @@ function logIn(){
             var response = JSON.parse(this.responseText);
             if( response == 'error' ){
                 document.getElementById('error').innerHTML = "Błędne dane logowania!";
-            }else if( response == 'noUser'){
-                document.getElementById('error').innerHTML = "Nie ma takiego użytkonika";
-            }else if( response == 'incorrectPassword' ){
-                document.getElementById('error').innerHTML = "Hasło niepoprawne!";
+            }else if( response == 'incorrectData' ){
+                document.getElementById('error').innerHTML = "Niepoprawna nazwa użytkownika lub hasło!";
             }else{
                 console.log(response);
                 sessionStorage.setItem('loggedUser', response );
-                window.location.assign('main.php');
+                window.location.assign('index.php');
             }
         }
     };
