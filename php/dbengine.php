@@ -190,7 +190,7 @@ class customDBEngine
 
     public function prepare($sql)
     {
-        return $this->prepare($sql);
+        return $this->connection->prepare($sql);
     }
 
     public function login($user, $password)
