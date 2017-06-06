@@ -4,6 +4,7 @@
 
 var services = [];
 
+//logowanie użytkownika
 function logIn(){
     var obj, username, password, json;
     username = document.getElementById('username').value;
@@ -37,7 +38,7 @@ function logIn(){
     xhttp.send(json);
 }
 
-
+//wylogowywanie użytkownika
 function logOut( string ){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -57,6 +58,7 @@ function logOut( string ){
     xhttp.send();
 }
 
+//rejestracja nowego użytkownika
 function validForm(){
     event.preventDefault(event);
 

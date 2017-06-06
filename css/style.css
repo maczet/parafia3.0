@@ -9,6 +9,7 @@ header{
     padding: 5px;
 }
 
+/*główny szablon*/
 #container{
     margin-left: auto;
     margin-right: auto;
@@ -23,6 +24,7 @@ header{
     font-size: large;
 }
 
+/*podział strony na 2 kwadraty*/
 .square{
     width: 50%;
     float: left;
@@ -324,6 +326,7 @@ footer h5{
     text-align: right;
 }
 
+/*guziki*/
 .cancel{
     background: darkred;
 }
