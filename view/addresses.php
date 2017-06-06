@@ -32,32 +32,32 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/php/dbengine.php');
     <table>
         <tr width="800">
         </tr>
-            <th>ID adresu</th>
-            <th>Ulica</th>
-            <th>Numer budynku</th>
-            <th>Numer mieszkania</th>
-            <th>Kod pocztowy</th>
-            <th>Miejscowość</th>
+        <th>Nazwisko</th>
+        <th>Imię</th>
+        <th>Ulica</th>
+        <th>Numer budynku</th>
+        <th>Numer mieszkania</th>
+        <th>Kod pocztowy</th>
+        <th>Miasto</th>
         </tr>
 
         <?php
-        foreach (DBEngine::getDatabase()->query()->open("SELECT * FROM ADRES")->getResult() as $k=>$row ) {
+        foreach (DBEngine::getDatabase()->query()->open("SELECT * FROM adres_all")->getResult() as $k=>$row ) {
             // generujemy wiersz tabeli na podstawie krotki
             echo
                 '<tr>'.
-                '<td>'.$row['id_adres'].'</td>'.
+                '<td>'.$row['nazwisko'].'</td>'.
+                '<td>'.$row['imie'].'</td>'.
                 '<td>'.$row['ulica'].'</td>'.
                 '<td>'.$row['numer_budynku'].'</td>'.
                 '<td>'.$row['numer_mieszkania'].'</td>'.
                 '<td>'.$row['kod_pocztowy'].'</td>'.
-                '<td>'.$row['miejscowosc'].'</td>'.
+                '<td>'.$row['miasto'].'</td>'.
                 '</tr>';
         }
 
         ?>
-
     </table>
-
 
     <!-- </div> -->
     <div id="img">
