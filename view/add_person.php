@@ -43,7 +43,7 @@
         </div>
         <div style="clear: both">
             <button type="submit" class="apply">Dodaj</button>
-            <button onclick="clear_add_person()" class="cancel">Wyczyść</button>
+            <button onclick="clear_add_person_form()" class="cancel">Wyczyść</button>
             <br/><br/>
             *Wymagane
         </div>

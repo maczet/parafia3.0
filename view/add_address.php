@@ -41,7 +41,7 @@
         </div>
         <div style="clear: both">
             <button type="submit" class="apply">Dodaj</button>
-            <button onclick="clear_address_form()" class="cancel">Wyczyść</button>
+            <button onclick="clear_add_address_form()" class="cancel">Wyczyść</button>
             <br/><br/>
             *Wymagane
             <br/>
@@ -50,5 +50,5 @@
     </div>
 </form>
 <div>
-    <label id="label_info"></label>
+    <label id="label_info"></label><label id="success"></label>
 </div>

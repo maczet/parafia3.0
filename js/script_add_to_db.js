@@ -4,8 +4,8 @@
 
 var services = [];
 
-//czyszczenie formy dodawania osoby
-function clear_reg_form(){
+//add person
+function clear_add_person_form(){
     document.getElementById('name').value = "";
     document.getElementById('surname').value = "";
     document.getElementById('birthday').value = "";
@@ -13,11 +13,11 @@ function clear_reg_form(){
     document.getElementById('photo').value = "";
     document.getElementById('description').value = "";
 }
-// dodawanie osoby
+
 function add_person( object ) {
 
     var json = JSON.stringify(object);
-    var label;
+    // var label;
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -52,7 +52,9 @@ function valid_form_add_person(){
                 zdjecia: photo,
                 opis: description
             };
+
             add_person(obj);
+            clear_add_person_form()
 
     }else
     {
@@ -61,8 +63,8 @@ function valid_form_add_person(){
     }
 }
 
-//dodawanie adresu
-function clear_address_form(){
+//add address
+function clear_add_address_form(){
     document.getElementById('id_person').value = "";
     document.getElementById('street').value = "";
     document.getElementById('house_number').value = "";
@@ -94,7 +96,9 @@ function valid_form_add_address(){
             kod_pocztowy: code,
             miasto: city
         };
+
         add_address(obj);
+        clear_add_address_form();
 
     }else
     {
@@ -106,13 +110,65 @@ function valid_form_add_address(){
 function add_address( object ) {
 
     var json = JSON.stringify(object);
+    // var label;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log( JSON.parse( this.responseText ) );
+            document.getElementById('success').innerHTML = "Adres został dodany prawidłowo";
+        }
+    };
+    xhttp.open("POST", "../php/dbengine.php", true);
+    xhttp.send( json );
+}
+
+//ADD Contact
+function clear_add_contact_form() {
+    document.getElementById('id_person').value = "";
+    document.getElementById('phone').value = "";
+    document.getElementById('mobile').value = "";
+    document.getElementById('email').value = "";
+}
+function valid_form_add_contact() {
+    event.preventDefault(event);
+
+    var id_person, phone, phone, mobile, email;
+    id_person = document.getElementById('id_person').value;
+    phone = document.getElementById('phone').value;
+    mobile = document.getElementById('mobile').value;
+    email = document.getElementById('email').value;
+
+    if ( id_person != "") {
+
+        var obj;
+        var obj = {
+            id_osoby: id_person,
+            numer_stacjonarny: phone,
+            numer_komurkowy: mobile,
+            email: email,
+        };
+
+        add_contact(obj);
+        clear_add_contact_form()
+
+    }else
+    {
+        var label = document.getElementById('label_info');
+        label.innerHTML = "Proszę wypełnić wszystkie wymagane pola!";
+    }
+}
+
+function add_contact( object ) {
+
+    var json = JSON.stringify(object);
     var label;
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             console.log( JSON.parse( this.responseText ) );
-            document.getElementById('label_info').innerHTML = "Osoba została dodana.";
+            document.getElementById('label_info').innerHTML = "Kontakt został dodany prawidołowo.";
         }
     };
     xhttp.open("POST", "../php/dbengine.php", true);

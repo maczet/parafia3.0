@@ -9,24 +9,24 @@
 
 <h2>Dodaj nowego parafianina do bazy.</h2>
 
-<form method="post">
+<form onsubmit="valid_form_add_contact()">
     <div id=add>
         <div class="square">
             Id osoby*
             <br/>
-            <input type="text" name="id_person" />
+            <input type="text" id="id_person" />
             <br/><br/>
             Numer stacjonarny
             <br/>
-            <input type="number" name="phone" />
+            <input type="number" id="phone" />
             <br/><br/>
             Numer komurkowy
             <br/>
-            <input type="number" name="mobile" />
+            <input type="number" id="mobile" />
             <br/><br/>
             Adres email
             <br/>
-            <input type="email" name="email" />
+            <input type="email" id="email" />
             <br/><br/>
         </div>
 
@@ -34,9 +34,13 @@
 
         </div>
         <div style="clear: both">
-            <input type="submit" value="Dodaj nową osobę">
+            <button type="submit" class="apply">Dodaj</button>
+            <button onclick="clear_add_contact_form()" class="cancel">Wyczyść</button>
             <br/><br/>
             *Wymagane
         </div>
     </div>
 </form>
+<div>
+    <label id="label_info"></label><label id="success"></label>
+</div>
