@@ -8,7 +8,7 @@
 ?>
 
 <h2>Dodaj nowy adres do bazy.</h2>
-
+<!--Form to obtain information needed to add an address-->
 <form onsubmit="valid_form_add_address()">
     <div id=add>
         <div class="square">

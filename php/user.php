@@ -10,7 +10,7 @@ session_start();
 require_once('dbconfig.php');
 require_once ('dbengine.php');
 
-//przesłanie danych metodą POST rozpoczyna próbę logowania użytkownika
+//send data POST method
 if( $_SERVER['REQUEST_METHOD'] == "POST" ) {
     //pobranie danych z 'posta' i rozkodowanie do notacji PHP
     $content = file_get_contents("php://input");

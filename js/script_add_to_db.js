@@ -5,6 +5,7 @@
 var services = [];
 
 //add person
+//czyszczenie formularza
 function clear_add_person_form(){
     document.getElementById('name').value = "";
     document.getElementById('surname').value = "";
@@ -13,7 +14,7 @@ function clear_add_person_form(){
     document.getElementById('photo').value = "";
     document.getElementById('description').value = "";
 }
-
+//przesłanie zwalodowanego obiektu z danymi
 function add_person( object ) {
 
     var json = JSON.stringify(object);
@@ -29,10 +30,10 @@ function add_person( object ) {
     xhttp.open("POST", "../php/dbengine.php", true);
     xhttp.send( json );
 }
-
+//pobieranie wartości z formularza i walidacja czy zostały wprowadzone pola wymagane
 function valid_form_add_person(){
     event.preventDefault(event);
-
+    //pobieranie wartości wprowadzonych przez użytkownika
     var name, surname, birthday, sex, photo, description;
         name = document.getElementById('name').value;
         surname = document.getElementById('surname').value;
@@ -40,7 +41,7 @@ function valid_form_add_person(){
         sex = document.getElementById('sex').value;
         photo = document.getElementById('photo').value;
         description = document.getElementById('description').value;
-
+    //sprawdzenie czy wymagane pola nie są puste
     if ( name != "" && surname != "" && sex != "") {
 
             var obj;
@@ -83,7 +84,7 @@ function valid_form_add_address(){
     flat_number = document.getElementById('flat_number').value;
     code = document.getElementById('code').value;
     city = document.getElementById('city').value;
-
+    //sprawdzenie czy wymagane pola nie są puste
     if ( id_person != "" && street != "" && house_number != "" && code != "" && city!= "") {
 
         var obj;
@@ -138,7 +139,7 @@ function valid_form_add_contact() {
     phone = document.getElementById('phone').value;
     mobile = document.getElementById('mobile').value;
     email = document.getElementById('email').value;
-
+    //sprawdzenie czy wymagane pola nie są puste
     if ( id_person != "") {
 
         var obj;

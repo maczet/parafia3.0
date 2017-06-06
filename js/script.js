@@ -129,7 +129,7 @@ function createUser( object) {
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(json);
 }
-
+//czyszczenie formularza
 function clear_reg_form()
 {
     document.getElementById('firstName').value = "";
