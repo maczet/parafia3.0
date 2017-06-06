@@ -6,26 +6,58 @@
  * Time: 18:30
  */
 
-include_once('../php/dbengine.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/php/dbengine.php');
 
 ?>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
 
 <div class="mainContainer">
-    <div id="list">
-            <table width="800">
-                <tr>
+    <!--div id="list">-->
+        <table>
+            <tr width="800">
+            </tr>
+                <th>ID osoby</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Data urodzenia</th>
+                <th>Płeć</th>
+            </tr>
+
 <?php
-  foreach (DBEngine::getDatabase()->query()->open("SELECT * FROM OSOBY") as $k=>$row ) {
-    // generate table row
-    echo $row['id_osoby'].$row['imie'].$row['nazwisko'].$row['data_urodzenia'].$row['plec'];
+  foreach (DBEngine::getDatabase()->query()->open("SELECT * FROM OSOBA")->getResult() as $k=>$row ) {
+           // generujemy wiersz tabeli na podstawie krotki
+           echo
+           '<tr>'.
+               '<td>'.$row['id_osoby'].'</td>'.
+               '<td>'.$row['imie'].'</td>'.
+               '<td>'.$row['nazwisko'].'</td>'.
+               '<td>'.$row['data_urodzenia'].'</td>'.
+               '<td>'.$row['plec'].'</td>'.
+           '</tr>';
   }
 
 ?>
-                </tr>
+
             </table>
 
 
-    </div>
+    <!-- </div> -->
     <div id="img">
         <img src="img/businessman.png" width="400px" height="400px">
     </div>

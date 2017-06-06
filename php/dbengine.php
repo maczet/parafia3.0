@@ -247,7 +247,7 @@ class customQuery implements queryInterface
         $this->connection = $connection;
     }
 
-    public function open($sql, $values = "")
+    public function open($sql, $values = array(""))
     {
         $this->stmt = $this->connection->prepare($sql);
         $this->stmt->execute($values);
