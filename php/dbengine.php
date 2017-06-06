@@ -213,7 +213,10 @@ class customDBEngine
 
     public function isLogged()
     {
-        return $_SESSION['loggedUser'] <> '';
+        if (isset($_SESSION['loggedUser'])){
+            return $_SESSION['loggedUser'] <> '';
+        }
+
     }
 
     public function getLoggedUser()
