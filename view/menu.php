@@ -12,6 +12,7 @@ if (DBEngine::getDatabase()->isLogged()) {
         <a href="index.php?view=persons" title="Lista parafian">Lista parafian</a>
         <a href="index.php?view=addresses" title="Lista adresów">Lista adresów</a>
         <a href="index.php?view=cities" title="Lista miast">Lista miast</a>
+        <a href="index.php?view=contacts" title="Lista kontaktów">Kontakty</a>
         <button class="logoutButton" onclick="logOut('php/logout.php')">Log out</button>
     </div>
     <?php
