@@ -10,20 +10,19 @@
 
 <div class="mainContainer">
     <div id="helpForm">
-        <form onsubmit="validForm()">
-
-            <label for="email">Twój adres email*</label>
-            <br>
-            <input id="email" type="email" placeholder="email" required>
-            <br>
-            <label for="message">Twoja wiadomość*</label>
-            <br>
-            <textarea id="message" type="text" required></textarea>
-            <br>
-            <button type="submit">Wyślij</button>
-            <br>
-            <h3>*pola wymagane</h3>
+        <form method="POST" action="../php/mail.php">
+            Twój adres e-mail:*
+            </br>
+            <input type="email" name="headers">
+            </br>
+            Twoja wiadomość e-mail:*
+            </br>
+            <textarea type="text" name="wiadomosc"></textarea>
+            </br>
+            <input type="submit" value="ok">
         </form>
+            <h3>*pola wymagane</h3>
+
     </div>
     <div id="img">
         <img src="img/question-mark.png" width="400px" height="400px">

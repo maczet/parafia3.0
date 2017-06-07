@@ -9,6 +9,10 @@
 include_once($_SERVER['DOCUMENT_ROOT'].'/php/dbengine.php');
 
 ?>
+
+<?php
+if (DBEngine::getDatabase()->isLogged()) {
+    ?>
 <style>
     table {
         font-family: arial, sans-serif;
@@ -53,9 +57,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/php/dbengine.php');
   }
 
 ?>
-
             </table>
-
 
     <!-- </div> -->
     <div id="img">
@@ -66,3 +68,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/php/dbengine.php');
     </div>
 </div>
 
+<?php
+} else {
+    header('Location: ../index.php');
+}?>

@@ -7,6 +7,9 @@
  */
 ?>
 
+<?php
+    if (DBEngine::getDatabase()->isLogged()) {
+?>
 <h2>Dodaj nowy adres do bazy.</h2>
 <!--Form to obtain information needed to add an address-->
 <form onsubmit="valid_form_add_address()">
@@ -52,3 +55,7 @@
 <div>
     <label id="label_info"></label><label id="success"></label>
 </div>
+<?php
+    } else {
+        header('Location: ../index.php');
+    }?>

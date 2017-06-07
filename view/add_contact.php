@@ -7,6 +7,9 @@
  */
 ?>
 
+<?php
+if (DBEngine::getDatabase()->isLogged()) {
+?>
 <h2>Dodaj nowego parafianina do bazy.</h2>
 
 <form onsubmit="valid_form_add_contact()">
@@ -44,3 +47,7 @@
 <div>
     <label id="label_info"></label><label id="success"></label>
 </div>
+    <?php
+} else {
+    header('Location: ../index.php');
+}?>

@@ -5,7 +5,9 @@
  * Date: 02.06.2017
  * Time: 18:34
  */
-
+if (DBEngine::getDatabase()->isLogged()) {
+    header('Location: ../index.php');
+}else{
 ?>
 
 <div class="mainContainer">
@@ -25,3 +27,6 @@
         <img src="img/church.jpg" width="400px">
     </div>
 </div>
+<?php
+    }
+?>
