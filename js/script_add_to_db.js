@@ -24,8 +24,8 @@ function add_person( object ) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             console.log( JSON.parse( this.responseText ) );
-            if ( this.responseText == 'success')
-                document.getElementById('label_info').innerHTML = "Osoba została dodana.";
+            if ( this.responseText == '"success"')
+                document.getElementById('success').innerHTML = "Osoba została dodana.";
             else
                 document.getElementById('label_info').innerHTML = "Błąd: " + this.responseText;
         }
