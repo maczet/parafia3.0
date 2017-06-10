@@ -33,11 +33,11 @@ if (DBEngine::getDatabase()->isLogged()) {
                 <br/><br/>
             </div>
 
-            <div class="square">
-                Zdjęcie
+               <div class="square">
+               <!-- TODO Zdjęcie
                 <br/>
                 <input type="file" id="photo" />
-                <br/><br/>
+                <br/><br/> -->
                 Opis
                 <br/>
                 <input type="text" id="description" />

@@ -100,6 +100,80 @@ function validForm(){
     }
 }
 
+//dodanie nowego użytkownika
+// function valid_form_add_person(){
+//     event.preventDefault(event);
+//
+//     var name, surname, birthday, sex;
+//     name = document.getElementById('name').value;
+//     surname = document.getElementById('surname').value;
+//     birthday = document.getElementById('birthday').value;
+//     sex = document.getElementById('sex').value;
+//
+//     if ( name.length == 0 ) {
+//
+//         if (surname.length == 0)
+//         {
+//             var obj;
+//
+//             var obj = {
+//                 name: name,
+//                 surname: surname,
+//                 birthday: birthday,
+//                 sex: sex,
+//             };
+//
+//             createPerson(obj);
+//
+//         } else {
+//             var label = document.getElementById('label_info');
+//             label.innerHTML = "Proszę wpisać nazwisko!";
+//         }
+//     }
+//     else
+//     {
+//         var label = document.getElementById('label_info');
+//         label.innerHTML = "Prosze wpisać imię!";
+//     }
+// }
+//
+// function createPerson( object) {
+//
+//     var json = JSON.stringify(object);
+//     var label;
+//
+//     var xhttp = new XMLHttpRequest();
+//     xhttp.onreadystatechange = function() {
+//         if (this.readyState == 4 && this.status == 200) {
+//
+//             console.log(this.response);
+//             var response = JSON.parse(this.responseText);
+//
+//              if( response == 'success' ){
+//                 label = document.getElementById('success');
+//
+//                 alert("Dodano osobę.");
+//
+//                 clear_reg_form_person();
+//             } else {
+//                  alert("Wystąpił błąd: " + response);
+//              }
+//         }
+//     };
+//     xhttp.open("POST", "php/create_person.php", true);
+//     xhttp.setRequestHeader("Content-type", "application/json");
+//     xhttp.send(json);
+// }
+//
+// //czyszczenie formularza osoby
+// function clear_reg_form_person()
+// {
+//     document.getElementById('name').value = "";
+//     document.getElementById('surname').value = "";
+//     document.getElementById('sex').value = "";
+//     document.getElementById('birthday').value = "";
+// }
+
 function createUser( object) {
 
     var json = JSON.stringify(object);

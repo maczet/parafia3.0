@@ -11,8 +11,8 @@ function clear_add_person_form(){
     document.getElementById('surname').value = "";
     document.getElementById('birthday').value = "";
     document.getElementById('sex').value = "";
-    document.getElementById('photo').value = "";
-    document.getElementById('description').value = "";
+    //document.getElementById('photo').value = "";
+    //document.getElementById('description').value = "";
 }
 //przesłanie zwalodowanego obiektu z danymi
 function add_person( object ) {
@@ -24,10 +24,13 @@ function add_person( object ) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             console.log( JSON.parse( this.responseText ) );
-            document.getElementById('label_info').innerHTML = "Osoba została dodana.";
+            if ( this.responseText == 'success')
+                document.getElementById('label_info').innerHTML = "Osoba została dodana.";
+            else
+                document.getElementById('label_info').innerHTML = "Błąd: " + this.responseText;
         }
     };
-    xhttp.open("POST", "../php/dbengine.php", true);
+    xhttp.open("POST", "../php/create_person.php", true);
     xhttp.send( json );
 }
 //pobieranie wartości z formularza i walidacja czy zostały wprowadzone pola wymagane
@@ -39,8 +42,8 @@ function valid_form_add_person(){
         surname = document.getElementById('surname').value;
         birthday = document.getElementById('birthday').value;
         sex = document.getElementById('sex').value;
-        photo = document.getElementById('photo').value;
-        description = document.getElementById('description').value;
+        //photo = document.getElementById('photo').value;
+        //description = document.getElementById('description').value;
     //sprawdzenie czy wymagane pola nie są puste
     if ( name != "" && surname != "" && sex != "") {
 
@@ -98,8 +101,8 @@ function valid_form_add_address(){
             miasto: city
         };
 
-        add_address(obj);
-        clear_add_address_form();
+        if (add_address(obj))
+          clear_add_address_form();
 
     }else
     {
@@ -118,9 +121,10 @@ function add_address( object ) {
         if (this.readyState == 4 && this.status == 200) {
             console.log( JSON.parse( this.responseText ) );
             document.getElementById('success').innerHTML = "Adres został dodany prawidłowo";
+            return true;
         }
     };
-    xhttp.open("POST", "../php/dbengine.php", true);
+    xhttp.open("POST", "../php/create_address.php", true);
     xhttp.send( json );
 }
 
@@ -172,6 +176,6 @@ function add_contact( object ) {
             document.getElementById('label_info').innerHTML = "Kontakt został dodany prawidołowo.";
         }
     };
-    xhttp.open("POST", "../php/dbengine.php", true);
+    xhttp.open("POST", "../php/create_contact.php", true);
     xhttp.send( json );
 }
