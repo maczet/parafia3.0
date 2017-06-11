@@ -24,21 +24,23 @@ FOREIGN KEY (id_osoby)
 
 
 CREATE TABLE adres(
-id_adres INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-ulica VARCHAR(40) NOT NULL,
-numer_budynku INT UNSIGNED NOT NULL,
-numer_mieszkania int UNSIGNED,
-kod_pocztowy VARCHAR(6) NOT NULL,
-miasto VARCHAR(40) NOT NULL
+  id_adres INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  id_osoby INT UNSIGNED NOT NULL,
+  ulica VARCHAR(40) NOT NULL,
+  numer_budynku INT UNSIGNED NOT NULL,
+  numer_mieszkania int UNSIGNED,
+  kod_pocztowy VARCHAR(6) NOT NULL,
+  miasto VARCHAR(40) NOT NULL,
+  FOREIGN KEY (id_osoby) REFERENCES osoba(id_osoby)
 );
 
-CREATE TABLE osoba_adres (
-id_osoby INT UNSIGNED NOT NULL,
-id_adres INT UNSIGNED NOT NULL,
-
-	FOREIGN KEY (id_osoby) REFERENCES osoba(id_osoby), 
-     FOREIGN KEY (id_adres) REFERENCES adres(id_adres)
-);
+# CREATE TABLE osoba_adres (
+# id_osoby INT UNSIGNED NOT NULL,
+# id_adres INT UNSIGNED NOT NULL,
+#
+# 	FOREIGN KEY (id_osoby) REFERENCES osoba(id_osoby),
+#      FOREIGN KEY (id_adres) REFERENCES adres(id_adres)
+# );
 
 CREATE TABLE pokrewienstwo (
 id_rodzica INT UNSIGNED NOT NULL,
@@ -93,19 +95,19 @@ INSERT INTO cmentarz (x, y, Od_wynajete, do_wynajtete, id_osoby) VALUES (3, 5, '
 INSERT INTO cmentarz (x, y, Od_wynajete, do_wynajtete, id_osoby) VALUES (32, 31, '1996-12-12', '2100-12-11', 3);
 INSERT INTO cmentarz (x, y, Od_wynajete, do_wynajtete, id_osoby) VALUES (14, 17, '2016-01-01', '2025-10-10', 4);
 
-INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, 'Kijowska', 10, 16, '40-123',  'Katowice');
-INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, 'Miejska', 123, NULL, '41-223', 'Katowice');
-INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, 'Staromiejska', 1, 345, '42-654', 'Katowice');
-INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, 'Śląska', 2, NULL, '40-033', 'Katowice');
-INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, '3 Maja', 10, 2, '48-123', 'Katowice');
-INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, '1 Maja', 987, 89, '40-121',  'Katowice');
+INSERT INTO adres (id_adres, id_osoby, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, '1', 'Kijowska', 10, 16, '40-123',  'Katowice');
+INSERT INTO adres (id_adres, id_osoby, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, '2', 'Miejska', 123, NULL, '41-223', 'Katowice');
+INSERT INTO adres (id_adres, id_osoby, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, '3', 'Staromiejska', 1, 345, '42-654', 'Katowice');
+INSERT INTO adres (id_adres, id_osoby, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, '4', 'Śląska', 2, NULL, '40-033', 'Katowice');
+INSERT INTO adres (id_adres, id_osoby, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, '5', '3 Maja', 10, 2, '48-123', 'Katowice');
+INSERT INTO adres (id_adres, id_osoby, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (NULL, '6', '1 Maja', 987, 89, '40-121',  'Katowice');
 
-INSERT INTO osoba_adres(id_osoby, id_adres) VALUES (1,2);
-INSERT INTO osoba_adres(id_osoby, id_adres) VALUES (2,4);
-INSERT INTO osoba_adres(id_osoby, id_adres) VALUES (3,1);
-INSERT INTO osoba_adres(id_osoby, id_adres) VALUES (4,6);
-INSERT INTO osoba_adres(id_osoby, id_adres) VALUES (5,5);
-INSERT INTO osoba_adres(id_osoby, id_adres) VALUES (6,3);
+# INSERT INTO osoba_adres(id_osoby, id_adres) VALUES (1,2);
+# INSERT INTO osoba_adres(id_osoby, id_adres) VALUES (2,4);
+# INSERT INTO osoba_adres(id_osoby, id_adres) VALUES (3,1);
+# INSERT INTO osoba_adres(id_osoby, id_adres) VALUES (4,6);
+# INSERT INTO osoba_adres(id_osoby, id_adres) VALUES (5,5);
+# INSERT INTO osoba_adres(id_osoby, id_adres) VALUES (6,3);
 
 INSERT INTO datki_osoba (id_osoby, kwota, data) VALUES (1, 1000, '2015-01-01');
 INSERT INTO datki_osoba (id_osoby, kwota, data) VALUES (2, 2000, '2016-01-01');
@@ -145,7 +147,7 @@ CREATE VIEW adres_all AS
 SELECT o.nazwisko, o.imie, a.ulica, a.numer_budynku, a.numer_mieszkania, 
 a.kod_pocztowy, a.miasto 
 FROM osoba AS o
-NATURAL JOIN osoba_adres
+# NATURAL JOIN osoba_adres
 NATURAL JOIN adres AS a
 ORDER BY nazwisko;
 
