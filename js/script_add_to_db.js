@@ -93,7 +93,7 @@ function valid_form_add_address(){
         var obj;
 
         var obj = {
-            id_osoby: id_person,
+            id_adres: id_person,
             ulica: street,
             numer_budynku: house_number,
             numer_mieszkania: flat_number,
