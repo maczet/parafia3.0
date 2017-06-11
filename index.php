@@ -6,7 +6,7 @@
  * Time: 18:36
  */
 
-require_once ('/php/dbengine.php');
+require_once ('php/dbengine.php');
 ?>
 <!DOCTYPE html>
 <html lang="pl">
