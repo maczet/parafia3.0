@@ -15,14 +15,14 @@ $decoded = json_decode($content);
 try {
     // dodanie użytkownika
     //ustanowienie połączenia z bazą danych
-    DBEngine::getDatabase()->query()->open("INSERT INTO ADRES (id_osoby, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (?, ?, ?, ?) ",
-        array($decoded->id_osoby, $decoded->ulica, $decoded->numer_budynku, $decoded->numer_mieszkania, $decoded->kod_pocztowy,  $decoded->miasto));
+    DBEngine::getDatabase()->query()->open("INSERT INTO adres (id_adres, ulica, numer_budynku, numer_mieszkania, kod_pocztowy, miasto) VALUES (?, ?, ?, ?, ?, ?) ",
+        array($decoded->id_adres, $decoded->ulica, $decoded->numer_budynku, $decoded->numer_mieszkania, $decoded->kod_pocztowy, $decoded->miasto));
 
     echo json_encode('success');
 
     exit();
-
 }
+
 catch(PDOException $e) {
     echo json_encode( 'error:' + $e->getMessage());
     exit();
